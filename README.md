@@ -1,4 +1,4 @@
-# Add Item & Calculate Shopping Exercise
+# Add Item & Calculate sales tax for Shopping cart Exercise
 
 ## Overview
 Implementation of a shopping cart in Java.
