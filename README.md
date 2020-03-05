@@ -58,5 +58,8 @@ And the shopping cart’s total price should equal 314.96
 ## Test
 `mvn clean test`
 
-## BDD Test (Cucumber)
-`mvn clean verify -Dit.test=ICartRunner -Dcucumber.options=" --format html:report/cucumber-html-report-myReport"`
+######Following Test class added to test all three Acceptance criteria
+1) src\test\java\com\domain\service\Scenario1CartTest.java
+2) src\test\java\com\domain\service\Scenario2CartTest.java
+3) src\test\java\com\domain\service\Scenario3CartTest.java
+
