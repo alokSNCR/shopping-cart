@@ -15,54 +15,67 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Step 2: Add additional products of the same type to the shopping cart.
- *
  * Given:
- *    An empty shopping cart
- *    And a product, Dove Soap with a unit price of 39.99
- *
+ * 1) An empty shopping cart
+ * 2) And a product, Dove Soap with a unit price of 39.99
+ * 3) And another product, Axe Deo with a unit price of 99.99
+ * 4) And a sales tax rate of 12.5%
+ * <p>
+ * <p>
  * When:
- *    The user adds 5 Dove Soaps to the shopping cart
- *    And then adds another 3 Dove Soaps to the shopping cart
- *
+ * 1) The user adds 2 Dove Soaps to the shopping cart
+ * 2) And then adds 2 Axe Deos to the shopping cart
+ * <p>
  * Then:
- *    The shopping cart should contain 8 Dove Soaps each with a unit price of 39.99
- *    And the shopping cart’s total price should equal 319.92
+ * 1) The shopping cart should contain 2 Dove Soaps each with a unit price of 39.99
+ * 2) And the shopping cart should contain 2 Axe Deos each with a unit price of 99.99
+ * 3) And the total sales tax amount for the shopping cart should equal 35.00
+ * 4) And the shopping cart’s total price should equal 314.96
  */
 public class Scenario3CartTest {
 
   private Inventory inventory;
+  private double taxRate;
   private List<Item> items = new CopyOnWriteArrayList<Item>();
   private List<PromotionType> itemPromotions = new CopyOnWriteArrayList<PromotionType>();
 
   @Before
   public void setUp() {
+    // G
     items.add(new Item("Dove Soap", 39.99));
     itemPromotions.add(PromotionType.MARKED_PRICE);
+
+    items.add(new Item("Axe Deo", 99.99));
+    itemPromotions.add(PromotionType.MARKED_PRICE);
+
+    taxRate = 12.5;
     inventory = new Inventory(items, itemPromotions);
   }
 
   /**
-   * The user adds 5 Dove Soaps to the shopping cart
-   * And then adds another 3 Dove Soaps to the shopping cart
+   * The user adds 2 Dove Soaps to the shopping cart
+   * And then adds 2 Axe Deos to the shopping cart
    *
    * @throws ItemNotSameTypeException
    */
   @Test
-  public void testScenario2() throws ItemNotSameTypeException {
+  public void testScenario3() throws ItemNotSameTypeException {
     // an empty cart
     Cart cart = new Cart(inventory);
 
-    // add 5 Dove soap to the cart
-    List<String> order = new CopyOnWriteArrayList<>(Arrays.asList("Dove Soap", "Dove Soap", "Dove Soap", "Dove Soap", "Dove Soap"));
+    // add 2 Dove soap to the cart
+    List<String> order = new CopyOnWriteArrayList<>(Arrays.asList("Dove Soap", "Dove Soap"));
     cart.add(order);
 
-    // add another 3 Dove soap to the cart
-    order = new CopyOnWriteArrayList<>(Arrays.asList("Dove Soap", "Dove Soap", "Dove Soap"));
+    // add another 2 Axe Deo to the cart
+    order = new CopyOnWriteArrayList<>(Arrays.asList("Axe Deo", "Axe Deo"));
     cart.add(order);
+
+    // total sales tax should be 35.00 with the rate of 12.5%
+    assertEquals(cart.calculateSalesTax(taxRate), 35.00d, 0.01);
 
     // total price should be 319.92d
-    assertEquals(cart.calculateMarkerPrice(), 319.92d, 0.01);
+    assertEquals(cart.calculateTotalPrice(taxRate), 314.96d, 0.01);
   }
 
   @Test
@@ -74,6 +87,7 @@ public class Scenario3CartTest {
     cart.empty();
 
     assertEquals(cart.calculateMarkerPrice(), 0, 0.0);
-    assertEquals(cart.calculateFinalPrice(), 0, 0.0);
+    assertEquals(cart.calculateSalesTax(taxRate), 0d, 0.00);
+    assertEquals(cart.calculateTotalPrice(taxRate), 0d, 0.00);
   }
 }

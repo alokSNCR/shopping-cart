@@ -6,15 +6,17 @@ import com.domain.model.Item;
 import java.util.List;
 
 public interface ICart {
-    public List<Item> getItems();
+  List<Item> getItems();
 
-    public void empty();
+  void empty();
 
-    public void add(String itemName) throws ItemNotSameTypeException;
+  void add(String itemName) throws ItemNotSameTypeException;
 
-    public void add(List<String> itemNames) throws ItemNotSameTypeException;
+  void add(List<String> itemNames) throws ItemNotSameTypeException;
 
-    public double calculateFinalPrice() throws ItemNotSameTypeException;
+  double calculateSalesTax(double taxRate) throws ItemNotSameTypeException;
 
-    public double calculateMarkerPrice() throws ItemNotSameTypeException;
+  double calculateMarkerPrice() throws ItemNotSameTypeException;
+
+  double calculateTotalPrice(double taxRate) throws ItemNotSameTypeException;
 }

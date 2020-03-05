@@ -16,18 +16,18 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * Step 2: Add additional products of the same type to the shopping cart.
- *
+ * <p>
  * Given:
- *    An empty shopping cart
- *    And a product, Dove Soap with a unit price of 39.99
- *
+ * An empty shopping cart
+ * And a product, Dove Soap with a unit price of 39.99
+ * <p>
  * When:
- *    The user adds 5 Dove Soaps to the shopping cart
- *    And then adds another 3 Dove Soaps to the shopping cart
- *
+ * The user adds 5 Dove Soaps to the shopping cart
+ * And then adds another 3 Dove Soaps to the shopping cart
+ * <p>
  * Then:
- *    The shopping cart should contain 8 Dove Soaps each with a unit price of 39.99
- *    And the shopping cart’s total price should equal 319.92
+ * The shopping cart should contain 8 Dove Soaps each with a unit price of 39.99
+ * And the shopping cart’s total price should equal 319.92
  */
 public class Scenario2CartTest {
 
@@ -74,6 +74,5 @@ public class Scenario2CartTest {
     cart.empty();
 
     assertEquals(cart.calculateMarkerPrice(), 0, 0.0);
-    assertEquals(cart.calculateFinalPrice(), 0, 0.0);
   }
 }

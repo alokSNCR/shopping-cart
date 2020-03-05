@@ -70,7 +70,6 @@ public class Scenario1CartTest {
     cart.empty();
 
     assertEquals(cart.calculateMarkerPrice(), 0, 0.0);
-    assertEquals(cart.calculateFinalPrice(), 0, 0.0);
   }
 
   @Test(expected = IllegalArgumentException.class)
