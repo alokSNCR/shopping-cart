@@ -62,7 +62,7 @@ public class Scenario2CartTest {
     cart.add(order);
 
     // total price should be 319.92d
-    assertEquals(cart.calculateMarkerPrice(), 319.92d, 0.01);
+    assertEquals(319.92d, cart.calculateMarkerPrice(), 0.01);
   }
 
   @Test
@@ -73,6 +73,6 @@ public class Scenario2CartTest {
     cart.add(order);
     cart.empty();
 
-    assertEquals(cart.calculateMarkerPrice(), 0, 0.0);
+    assertEquals(0, cart.calculateMarkerPrice(), 0.0);
   }
 }

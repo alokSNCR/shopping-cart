@@ -17,16 +17,16 @@ import static org.junit.Assert.*;
 
 /**
  * Step 1: Add products to the shopping cart.
- *
- *Given:
- *    An empty shopping cart and a product, Dove Soap with a unit price of 39.99
- *
+ * <p>
+ * Given:
+ * An empty shopping cart and a product, Dove Soap with a unit price of 39.99
+ * <p>
  * When:
- *    The user adds 5 Dove Soaps to the shopping cart
- *
+ * The user adds 5 Dove Soaps to the shopping cart
+ * <p>
  * Then:
- *   The shopping cart should contain 5 Dove Soaps each with a unit price of 39.99
- *   And the shopping cart’s total price should equal 199.95
+ * The shopping cart should contain 5 Dove Soaps each with a unit price of 39.99
+ * And the shopping cart’s total price should equal 199.95
  */
 @RunWith(JUnit4.class)
 public class Scenario1CartTest {
@@ -58,7 +58,7 @@ public class Scenario1CartTest {
     cart.add(order);
 
     // total price should be 199.95d
-    assertEquals(cart.calculateMarkerPrice(), 199.95d, 0.01);
+    assertEquals(199.95d, cart.calculateMarkerPrice(), 0.01);
   }
 
   @Test
@@ -69,7 +69,7 @@ public class Scenario1CartTest {
     cart.add(order);
     cart.empty();
 
-    assertEquals(cart.calculateMarkerPrice(), 0, 0.0);
+    assertEquals(0, cart.calculateMarkerPrice(), 0.0);
   }
 
   @Test(expected = IllegalArgumentException.class)

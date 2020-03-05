@@ -1,6 +1,5 @@
 package com.domain.service;
 
-
 import com.domain.exception.ItemNotSameTypeException;
 import com.domain.filter.PromotionType;
 import com.domain.model.Inventory;
@@ -72,10 +71,10 @@ public class Scenario3CartTest {
     cart.add(order);
 
     // total sales tax should be 35.00 with the rate of 12.5%
-    assertEquals(cart.calculateSalesTax(taxRate), 35.00d, 0.01);
+    assertEquals(35.00d, cart.calculateSalesTax(taxRate), 0.01);
 
     // total price should be 319.92d
-    assertEquals(cart.calculateTotalPrice(taxRate), 314.96d, 0.01);
+    assertEquals(314.96d, cart.calculateTotalPrice(taxRate), 0.01);
   }
 
   @Test
@@ -86,8 +85,8 @@ public class Scenario3CartTest {
     cart.add(order);
     cart.empty();
 
-    assertEquals(cart.calculateMarkerPrice(), 0, 0.0);
-    assertEquals(cart.calculateSalesTax(taxRate), 0d, 0.00);
-    assertEquals(cart.calculateTotalPrice(taxRate), 0d, 0.00);
+    assertEquals(0, cart.calculateMarkerPrice(), 0.0);
+    assertEquals(0d, cart.calculateSalesTax(taxRate), 0.00);
+    assertEquals(0d, cart.calculateTotalPrice(taxRate), 0.00);
   }
 }
